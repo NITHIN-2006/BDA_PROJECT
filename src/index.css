@@ -1,0 +1,27 @@
+/* index.css */
+@import "@fontsource/jetbrains-mono/400.css";
+@import "@fontsource/jetbrains-mono/600.css";
+@import "@fontsource/inter/400.css";
+@import "@fontsource/inter/600.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  margin: 0;
+  background-color: #0A0E1A;
+  background-image: radial-gradient(circle, #1a2340 1px, transparent 1px);
+  background-size: 24px 24px;
+  font-family: "Inter", sans-serif;
+  color: #E2E8F0;
+}
+
+.font-display {
+  font-family: "JetBrains Mono", monospace;
+  letter-spacing: -0.01em;
+}
+
+.glow-cyan { box-shadow: 0 0 16px -4px #5EEAD4aa; }
+.glow-amber { box-shadow: 0 0 16px -4px #FBBF24aa; }
+.glow-magenta { box-shadow: 0 0 16px -4px #F472B6aa; }
