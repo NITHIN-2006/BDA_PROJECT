@@ -42,7 +42,7 @@ class NameNode {
  ingestFile(fileId, fileName, totalSizeMB, fullText = "") {
   const blockCount = Math.ceil(totalSizeMB / BLOCK_SIZE_MB);
   const blockIds = [];
-  const charsPerBlock = Math.ceil(fullText.length / blockCount);
+  const charsPerBlock = fullText.length > 0 ? Math.ceil(fullText.length / blockCount) : 0;
 
   for (let i = 0; i < blockCount; i++) {
     const sizeMB = Math.min(BLOCK_SIZE_MB, totalSizeMB - i * BLOCK_SIZE_MB);

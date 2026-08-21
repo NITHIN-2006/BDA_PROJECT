@@ -7,11 +7,14 @@ export default function FileUploadPanel({ onIngested }) {
   const [isDragging, setIsDragging] = useState(false);
   const [lastFile, setLastFile] = useState(null);
 
- const handleFiles = useCallback(
+ const MAX_CONTENT_BYTES = 2 * 1024 * 1024; // 2MB cap — plenty for word-count demos
+
+const handleFiles = useCallback(
   (files) => {
     const file = files[0];
     if (!file) return;
 
+    const sliceToRead = file.slice(0, MAX_CONTENT_BYTES);
     const reader = new FileReader();
     reader.onload = (e) => {
       const text = e.target.result;
@@ -22,11 +25,10 @@ export default function FileUploadPanel({ onIngested }) {
       setLastFile({ name: file.name, sizeMB, blockCount: blocks.length });
       onIngested(blocks);
     };
-    reader.readAsText(file);
+    reader.readAsText(sliceToRead);
   },
   [ingestFile, onIngested]
 );
-
   return (
     <div
       onDragOver={(e) => {
